@@ -49,6 +49,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
 
+  forbidden-pattern-scan:
+    name: Forbidden Pattern Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run forbidden pattern scan
+        run: bash scripts/forbidden-pattern-scan.sh "${{ github.workspace }}"
+
   lazarus:
     name: Lazarus Scanner
     runs-on: ubuntu-latest
